@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.wchen</groupId>
     <artifactId>OnlineBoardGamesShop</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>Init</version>
     <name>OnlineBoardGamesShop</name>
     <description>OnlineBoardGamesShop</description>
     <properties>
