@@ -3,7 +3,7 @@ pipeline
     agent any
 
     tools {
-        maven 'Maven 3.8.6' // 这里是 Jenkins 中配置的 Maven 的名字
+        maven 'myMaven' // 这里是 Jenkins 中配置的 Maven 的名字
         jdk 'jdk11' // 这里是 Jenkins 中配置的 JDK 的名字
     }
 
