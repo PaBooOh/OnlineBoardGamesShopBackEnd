@@ -35,11 +35,15 @@ pipeline
             }
         }
 
-        stage('Deploy') {
-            steps {
-                sh '
-                docker push myregistry/myimage:tag
-                '
+        stage('4. Push image to DockerHub')
+        {
+            steps
+            {
+                withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')])
+                {
+                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
+                    sh 'docker push couping/myshop:latest'
+                }
             }
         }
 
