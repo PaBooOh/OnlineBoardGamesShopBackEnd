@@ -47,23 +47,58 @@ pipeline
                 }
             }
         }
-
-        stage('5. Production environment deployment')
+        stage('5. Create deployment script') {
+            steps {
+                sh """
+                    echo 'docker login -u couping -p Nc480sdsltyyz!' > deploy.sh
+                    echo 'docker pull couping/myshop:latest' >> deploy.sh
+                    echo 'docker run --rm -d -p 8964:9999 --name onlineshop couping/myshop:latest' >> deploy.sh
+                """
+            }
+        }
+        stage('6. Deploy to Azure')
         {
             steps
             {
-                sshagent(credentials: ['AZURE_SSH_CREDS'])
+                script
                 {
-                    sh """
-                        ssh -o StrictHostKeyChecking=no azureuser@20.126.86.227 << EOF
-                            docker login -u couping -p Nc480sdsltyyz!
-                            docker pull couping/myshop:latest
-                            docker run --rm -d -p 8964:9999 --name onlineshop couping/myshop:latest
-                        EOF
-                    """
+                    sshPublisher(
+                        continueOnError: false, failOnError: true,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'AzureVMSSH',  // 在 Jenkins 中配置的 SSH 配置的名字
+                                verbose: true,
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: 'deploy.sh',  // 你要执行的脚本文件
+                                        removePrefix: '',
+                                        remoteDirectory: '',  // 远程目录，如果你要在用户目录下执行脚本，可以保持为空
+                                        execCommand: 'sh deploy.sh',  // 远程执行的命令
+                                        execTimeout: 120000  // 执行超时时间，单位是毫秒
+                                    )
+                                ]
+                            )
+                        ]
+                    )
                 }
             }
         }
+//         stage('5. Production environment deployment')
+//         {
+//             steps
+//             {
+//                 sshagent(credentials: ['AZURE_SSH_CREDS'])
+//                 {
+//                     sh """
+//                         ssh -o StrictHostKeyChecking=no azureuser@20.126.86.227 << EOF
+//                             docker login -u couping -p Nc480sdsltyyz!
+//                             docker pull couping/myshop:latest
+//                             docker run --rm -d -p 8964:9999 --name onlineshop couping/myshop:latest
+//                         EOF
+//                     """
+//                 }
+//             }
+//         }
 
     }
 }
