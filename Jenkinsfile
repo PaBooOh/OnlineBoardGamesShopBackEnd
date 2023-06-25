@@ -70,7 +70,7 @@ pipeline
                                 sshTransfer(
                                     cleanRemote: false,
                                     excludes: '',
-                                    execCommand: './deploy.sh',
+                                    execCommand: 'sh /home/azureuser/devopspipeline/deploy.sh',
                                     execTimeout: 120000,
                                     flatten: false,
                                     makeEmptyDirs: false,
