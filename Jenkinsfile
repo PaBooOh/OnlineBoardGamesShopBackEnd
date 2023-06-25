@@ -30,7 +30,7 @@ pipeline
             steps
             {
                 sh '''mv ./target/*.jar .
-                docker build -t myShop .'''
+                docker build -t myshop .'''
             }
         }
 
