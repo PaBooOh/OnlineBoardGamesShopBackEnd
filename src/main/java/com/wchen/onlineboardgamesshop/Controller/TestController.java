@@ -9,6 +9,6 @@ public class TestController {
 
     @GetMapping("/hello")
     public String test() {
-        return "Hello jenkins.";
+        return "Hello jenkins! Pipeline created!";
     }
 }
