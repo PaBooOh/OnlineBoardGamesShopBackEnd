@@ -53,14 +53,14 @@ pipeline
             {
                 sshagent(['AZURE_SSH_CREDS'])
                 {
-                    sh
-                    """
-                        ssh -o StrictHostKeyChecking=no azureuser@20.126.86.227 \
-                            docker login -u couping -p Nc480sdsltyyz! \
-                            docker pull couping/myshop:latest \
-                            docker stop onlineshop \
-                            docker rm onlineshop \
+                    sh """
+                        ssh -o StrictHostKeyChecking=no azureuser@20.126.86.227 << EOF
+                            docker login -u couping -p Nc480sdsltyyz!
+                            docker pull couping/myshop:latest
+                            docker stop onlineshop
+                            docker rm onlineshop
                             docker run -d -p 8964:9999 --name onlineshop couping/myshop:latest
+                        EOF
                     """
                 }
             }
