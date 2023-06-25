@@ -33,5 +33,16 @@ pipeline
                 docker build -t myshop .'''
             }
         }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                docker push myregistry/myimage:tag
+                docker image prune -f
+                '''
+            }
+        }
+
+
     }
 }
