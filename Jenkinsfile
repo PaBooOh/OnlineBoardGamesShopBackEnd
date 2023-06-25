@@ -60,29 +60,30 @@ pipeline
         {
             steps
             {
-                sshPublisher
-                (
+                sshPublisher(
                     continueOnError: false, failOnError: true,
                     publishers: [
                         sshPublisherDesc(
                             configName: 'AzureVMSSH',  // 在 Jenkins 中配置的 SSH 配置的名字
                             verbose: true,
-                            transfers:
-                            [
-                            sshTransfer(
-                            cleanRemote: false,
-                            excludes: '',
-                            execCommand: 'sh deploy.sh',
-                            execTimeout: 120000,
-                            flatten: false,
-                            makeEmptyDirs: false,
-                            noDefaultExcludes: false,
-                            patternSeparator: '[, ]+',
-                            remoteDirectory: '',
-                            remoteDirectorySDF: false,
-                            removePrefix: '',
-                            sourceFiles: 'deploy.sh')
+                            transfers: [
+                                sshTransfer(
+                                    cleanRemote: false,
+                                    excludes: '',
+                                    execCommand: 'sh deploy.sh',
+                                    execTimeout: 120000,
+                                    flatten: false,
+                                    makeEmptyDirs: false,
+                                    noDefaultExcludes: false,
+                                    patternSeparator: '[, ]+',
+                                    remoteDirectory: '',
+                                    remoteDirectorySDF: false,
+                                    removePrefix: '',
+                                    sourceFiles: 'deploy.sh'
+                                )
                             ]
+                        )
+                    ]
                 )
             }
         }
