@@ -42,6 +42,7 @@ pipeline
                 withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')])
                 {
                     sh 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
+                    sh 'docker tag myshop:latest couping/myshop:latest'
                     sh 'docker push couping/myshop:latest'
                 }
             }
