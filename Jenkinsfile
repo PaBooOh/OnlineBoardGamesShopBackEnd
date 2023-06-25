@@ -53,9 +53,6 @@ pipeline
             {
                 script
                 {
-                    // 确保你已经在 Jenkins 中设置了 Azure VM 的 SSH 凭证
-                    // 在这里，'AZURE_SSH_CREDS' 是在 Jenkins 中存储 Azure VM SSH 凭证的 ID
-                    // 'azure_vm_ip' 是你的 Azure 虚拟机的 IP 地址
                     sshagent(credentials: ['AZURE_SSH_CREDS'])
                     {
                         sh """
