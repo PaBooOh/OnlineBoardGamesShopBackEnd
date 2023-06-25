@@ -47,6 +47,30 @@ pipeline
             }
         }
 
+        stage('5. Production environment deployment')
+        {
+            steps
+            {
+                script
+                {
+                    // 确保你已经在 Jenkins 中设置了 Azure VM 的 SSH 凭证
+                    // 在这里，'AZURE_SSH_CREDS' 是在 Jenkins 中存储 Azure VM SSH 凭证的 ID
+                    // 'azure_vm_ip' 是你的 Azure 虚拟机的 IP 地址
+                    sshagent(credentials: ['AZURE_SSH_CREDS'])
+                    {
+                        sh """
+                            ssh -o StrictHostKeyChecking=no username@azure_vm_ip << EOF
+                                docker login -u couping -p Nc480sdsltyyz!
+                                docker pull couping/myshop:latest
+                                docker stop onlineshop
+                                docker rm onlineshop
+                                docker run -d -p 8964:9999 --name onlineshop couping/myshop:latest
+                            EOF
+                        """
+                    }
+                }
+            }
+        }
 
     }
 }
