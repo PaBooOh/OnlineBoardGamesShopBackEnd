@@ -1,4 +1,3 @@
-
 FROM adoptopenjdk/openjdk11
 
 COPY target/myShop.jar /usr/local/myShop.jar
