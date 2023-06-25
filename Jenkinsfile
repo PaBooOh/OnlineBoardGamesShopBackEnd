@@ -60,27 +60,30 @@ pipeline
         {
             steps
             {
-                script
-                {
-                    sshPublisher(
-                        continueOnError: false, failOnError: true,
-                        publishers: [
-                            sshPublisherDesc(
-                                configName: 'AzureVMSSH',  // 在 Jenkins 中配置的 SSH 配置的名字
-                                verbose: true,
-                                transfers: [
-                                    sshTransfer(
-                                        sourceFiles: 'deploy.sh',  // 你要执行的脚本文件
-                                        removePrefix: '',
-                                        remoteDirectory: '',  // 远程目录，如果你要在用户目录下执行脚本，可以保持为空
-                                        execCommand: 'sudo sh deploy.sh',  // 远程执行的命令
-                                        execTimeout: 120000  // 执行超时时间，单位是毫秒
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                }
+                sshPublisher
+                (
+                    continueOnError: false, failOnError: true,
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'AzureVMSSH',  // 在 Jenkins 中配置的 SSH 配置的名字
+                            verbose: true,
+                            transfers:
+                            [
+                            sshTransfer(
+                            cleanRemote: false,
+                            excludes: '',
+                            execCommand: 'sh deploy.sh',
+                            execTimeout: 120000,
+                            flatten: false,
+                            makeEmptyDirs: false,
+                            noDefaultExcludes: false,
+                            patternSeparator: '[, ]+',
+                            remoteDirectory: '',
+                            remoteDirectorySDF: false,
+                            removePrefix: '',
+                            sourceFiles: 'deploy.sh')
+                            ]
+                )
             }
         }
 //         stage('5. Production environment deployment')
