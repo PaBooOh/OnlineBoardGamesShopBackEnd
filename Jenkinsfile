@@ -24,5 +24,15 @@ pipeline
                 sh 'mvn clean package -DskipTests'
             }
         }
+
+        stage('3. Make docker images')
+        {
+            steps
+            {
+                sh '''mv ./target/*.jar .
+                docker build -t myShop .'''
+            }
+        }
+
     }
 }
