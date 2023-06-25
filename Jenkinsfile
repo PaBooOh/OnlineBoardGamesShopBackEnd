@@ -29,7 +29,7 @@ pipeline
         {
             steps
             {
-                sh '''cp ./target/*.jar .
+                sh '''cp ./target/myShop.jar .
                 docker build -t myshop .'''
             }
         }
