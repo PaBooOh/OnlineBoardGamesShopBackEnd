@@ -59,7 +59,7 @@ pipeline
                     sshagent(credentials: ['AZURE_SSH_CREDS'])
                     {
                         sh """
-                            ssh -o StrictHostKeyChecking=no username@azure_vm_ip << EOF
+                            ssh -o StrictHostKeyChecking=no azureuser@20.126.86.227 << EOF
                                 docker login -u couping -p Nc480sdsltyyz!
                                 docker pull couping/myshop:latest
                                 docker stop onlineshop
