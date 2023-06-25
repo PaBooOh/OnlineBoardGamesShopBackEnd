@@ -72,7 +72,7 @@ pipeline
                                     sshTransfer(
                                         sourceFiles: 'deploy.sh',  // 你要执行的脚本文件
                                         removePrefix: '',
-                                        remoteDirectory: '',  // 远程目录，如果你要在用户目录下执行脚本，可以保持为空
+                                        remoteDirectory: '/home/azureuser/devopspipeline',  // 远程目录，如果你要在用户目录下执行脚本，可以保持为空
                                         execCommand: 'sh deploy.sh',  // 远程执行的命令
                                         execTimeout: 120000  // 执行超时时间，单位是毫秒
                                     )
