@@ -30,16 +30,16 @@ pipeline
             steps
             {
                 sh '''cp ./target/myShop.jar .
-                docker build -t myshop .'''
+                docker build -t myshop .
+                docker image prune -f'''
             }
         }
 
         stage('Deploy') {
             steps {
-                sh '''
+                sh '
                 docker push myregistry/myimage:tag
-                docker image prune -f
-                '''
+                '
             }
         }
 
