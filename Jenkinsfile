@@ -51,8 +51,8 @@ pipeline
             steps {
                 sh """
                     echo 'docker login -u couping -p Nc480sdsltyyz!' > deploy.sh
-                    echo 'docker pull couping/myshop:latest' >> deploy.sh
                     echo 'docker run --rm -d -p 8964:9999 --name onlineshop couping/myshop:latest' >> deploy.sh
+                    echo 'docker image prune -f' >> deploy.sh
                 """
             }
         }
