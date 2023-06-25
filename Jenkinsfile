@@ -29,7 +29,7 @@ pipeline
         {
             steps
             {
-                sh '''mv ./target/*.jar .
+                sh '''mv ./target/*.jar.original .
                 docker build -t myshop .'''
             }
         }
