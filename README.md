@@ -2,7 +2,6 @@
 
 This System is deployed in Azure. You can visit it with the [public IP address](http://20.126.86.227:8964/).
 ## Technologies
-项目创建时使用：
 * Java
 * Spring Boot
 * Jenkins
