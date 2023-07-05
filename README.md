@@ -12,5 +12,5 @@ This System is deployed in Azure. You can visit it with the [public IP address](
 ### Jenkins
 ![404 Not Found](/github_images/Jenkins_CICD.png)
 
-This systems has achieved DevOps (CI/CD) pipeline with the help of Jenkins. Specifically, 
+This systems has achieved DevOps (CI/CD) pipeline with the help of Jenkins. Figure above shows the complete automated process of CI/CD.
 
