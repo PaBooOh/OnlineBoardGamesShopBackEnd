@@ -6,7 +6,7 @@ This System is deployed in Azure. You can visit it with the [public IP address](
 * Spring Boot
 * Jenkins
 * Docker
-* Azure
+* Azure (Azure Virtual Machine, Azure Mysql Server)
   
 ### Jenkins
 ![404 Not Found](/github_images/Jenkins_CICD.png)
