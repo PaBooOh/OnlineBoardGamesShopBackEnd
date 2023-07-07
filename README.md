@@ -1,5 +1,5 @@
 # OnlineBoardGamesShopBackEnd
-
+See [OnlineBoardGamesShopFronEnd](https://github.com/PaBooOh/OnlineBoardGamesShopFrontEnd) for the details about the front-end system for this project.
 This System is deployed in Azure. You can visit it with the [public IP address](http://20.126.86.227:8964/).
 ## Technologies
 * Java
