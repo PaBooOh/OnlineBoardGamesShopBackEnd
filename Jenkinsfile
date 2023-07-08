@@ -3,8 +3,8 @@ pipeline
     agent any
 
     tools {
-        maven 'myMaven' // 这里是 Jenkins 中配置的 Maven 的名字
-        jdk 'jdk11' // 这里是 Jenkins 中配置的 JDK 的名字
+        maven 'myMaven' // Maven path configured in Jenkins
+        jdk 'jdk11' // jdk path configured in Jenkins
     }
 
     stages
