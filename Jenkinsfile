@@ -25,17 +25,7 @@ pipeline
             }
         }
 
-//         stage('3. Docker Login')
-//         {
-//             steps
-//             {
-//                 withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
-//                     sh 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
-//                 }
-//             }
-//         }
-
-        stage('4. Make docker images')
+        stage('3. Make docker images')
         {
             steps
             {
@@ -45,7 +35,7 @@ pipeline
             }
         }
 
-        stage('5. Push image to DockerHub')
+        stage('4. Push image to DockerHub')
         {
             steps
             {
@@ -57,7 +47,7 @@ pipeline
                 }
             }
         }
-        stage('6. Create deployment script')
+        stage('5. Create deployment script')
         {
             steps
             {
@@ -72,7 +62,7 @@ pipeline
                 }
             }
         }
-        stage('7. Deploy to Azure')
+        stage('6. Deploy to Azure Virtual Machine')
         {
             steps
             {

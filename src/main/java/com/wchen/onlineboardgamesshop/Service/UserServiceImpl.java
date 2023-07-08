@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
     public User findUserByUUid(long uuid) {
         return loginRepository.findUserByUUid(uuid);
     }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return loginRepository.findUserByEmail(email);
+    }
 }

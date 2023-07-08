@@ -14,4 +14,8 @@ public interface LoginRepository extends JpaRepository<User, Integer>{
 
     @Query(nativeQuery = true, value = "select * from online_shop.user where user.uuid=:uuid")
     public User findUserByUUid(@Param("uuid") long uuid);
+
+    @Query(nativeQuery = true, value = "select * from online_shop.user where user.email=:email")
+    public User findUserByEmail(@Param("email") String email);
+
 }
