@@ -30,7 +30,7 @@ pipeline
             steps
             {
                 sh '''cp ./target/myShop.jar .
-                docker build -t myshop .
+                docker build -t myshopback .
                 docker image prune -f'''
             }
         }
@@ -42,8 +42,8 @@ pipeline
                 withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')])
                 {
                     sh 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
-                    sh 'docker tag myshop:latest $DOCKER_USER/myshop:latest'
-                    sh 'docker push $DOCKER_USER/myshop:latest'
+                    sh 'docker tag myshopback:latest $DOCKER_USER/myshopback:latest'
+                    sh 'docker push $DOCKER_USER/myshopback:latest'
                 }
             }
         }
@@ -51,13 +51,14 @@ pipeline
         {
             steps
             {
-                withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')])
+                {
                     sh """
-                        echo 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD' > deploy.sh
-                        echo 'docker stop onlineshopbackend' >> deploy.sh
-                        echo 'docker pull $DOCKER_USER/myshop:latest' >> deploy.sh
-                        echo 'docker run --rm -d -p 8964:9999 --name onlineshopbackend $DOCKER_USER/myshop:latest' >> deploy.sh
-                        echo 'docker image prune -f' >> deploy.sh
+                        echo 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD' > deploy_.sh
+                        echo 'docker stop onlineshopbackend' >> deploy_.sh
+                        echo 'docker pull $DOCKER_USER/myshopback:latest' >> deploy_.sh
+                        echo 'docker run --rm -d -p 8964:9999 --name onlineshopbackend $DOCKER_USER/myshopback:latest' >> deploy_.sh
+                        echo 'docker image prune -f' >> deploy_.sh
                     """
                 }
             }
@@ -76,7 +77,7 @@ pipeline
                                 sshTransfer(
                                     cleanRemote: false,
                                     excludes: '',
-                                    execCommand: 'sh /home/azureuser/devopspipeline/deploy.sh',
+                                    execCommand: 'sh /home/azureuser/devopspipeline/deploy_.sh',
                                     execTimeout: 120000,
                                     flatten: false,
                                     makeEmptyDirs: false,
@@ -85,7 +86,7 @@ pipeline
                                     remoteDirectory: '',
                                     remoteDirectorySDF: false,
                                     removePrefix: '',
-                                    sourceFiles: 'deploy.sh'
+                                    sourceFiles: 'deploy_.sh'
                                 )
                             ]
                         )

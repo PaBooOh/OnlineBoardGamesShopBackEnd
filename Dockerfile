@@ -1,4 +1,4 @@
 FROM openjdk:11-jdk
-WORKDIR /app
-COPY target/myShop.jar /app/myShop.jar
-ENTRYPOINT ["java", "-jar", "/app/myShop.jar"]
+WORKDIR /appback
+COPY target/myShop.jar /appback/myShop.jar
+ENTRYPOINT ["java", "-jar", "/appback/myShop.jar"]
