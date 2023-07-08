@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11
-WORKDIR /usr/local
-COPY target/myShop.jar /usr/local/myShop.jar
-ENTRYPOINT ["java", "-jar", "/usr/local/myShop.jar"]
+FROM openjdk:11-jdk
+WORKDIR /app
+COPY target/myShop.jar /app/myShop.jar
+ENTRYPOINT ["java", "-jar", "/app/myShop.jar"]
