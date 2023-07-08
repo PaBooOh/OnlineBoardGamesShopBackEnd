@@ -1,7 +1,7 @@
 package com.wchen.onlineboardgamesshop.Controller;
 
 import com.wchen.onlineboardgamesshop.Entity.User;
-import com.wchen.onlineboardgamesshop.Service.LoginService;
+import com.wchen.onlineboardgamesshop.Service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     @Autowired
-    private LoginService loginService;
+    private UserService loginService;
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @PostMapping("/findUserByUserName")
@@ -33,7 +33,6 @@ public class LoginController {
             return ResponseEntity.ok("Matching");
         }
         return ResponseEntity.notFound().build();
-//            return ResponseEntity.badRequest().body("User does not exist!");
     }
 
     @PostMapping("/findUserByUUid")

@@ -25,15 +25,15 @@ pipeline
             }
         }
 
-        stage('3. Docker Login')
-        {
-            steps
-            {
-                withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
-                }
-            }
-        }
+//         stage('3. Docker Login')
+//         {
+//             steps
+//             {
+//                 withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
+//                     sh 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
+//                 }
+//             }
+//         }
 
         stage('4. Make docker images')
         {
@@ -52,22 +52,11 @@ pipeline
                 withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')])
                 {
                     sh 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
-                    sh 'docker tag myshop:latest couping/myshop:latest'
-                    sh 'docker push couping/myshop:latest'
+                    sh 'docker tag myshop:latest $DOCKER_USER/myshop:latest'
+                    sh 'docker push $DOCKER_USER/myshop:latest'
                 }
             }
         }
-//         stage('5. Create deployment script') {
-//             steps {
-//                 sh """
-//                     echo 'docker login -u couping -p mydockertest' > deploy.sh
-//                     echo 'docker stop onlineshop' >> deploy.sh
-//                     echo 'docker pull couping/myshop:latest' >> deploy.sh
-//                     echo 'docker run --rm -d -p 8964:9999 --name onlineshop couping/myshop:latest' >> deploy.sh
-//                     echo 'docker image prune -f' >> deploy.sh
-//                 """
-//             }
-//         }
         stage('6. Create deployment script')
         {
             steps
@@ -75,9 +64,9 @@ pipeline
                 withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh """
                         echo 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD' > deploy.sh
-                        echo 'docker stop onlineshop' >> deploy.sh
-                        echo 'docker pull couping/myshop:latest' >> deploy.sh
-                        echo 'docker run --rm -d -p 8964:9999 --name onlineshop couping/myshop:latest' >> deploy.sh
+                        echo 'docker stop onlineshopbackend' >> deploy.sh
+                        echo 'docker pull $DOCKER_USER/myshop:latest' >> deploy.sh
+                        echo 'docker run --rm -d -p 8964:9999 --name onlineshopbackend $DOCKER_USER/myshop:latest' >> deploy.sh
                         echo 'docker image prune -f' >> deploy.sh
                     """
                 }

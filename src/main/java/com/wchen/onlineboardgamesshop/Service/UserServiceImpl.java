@@ -7,7 +7,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoginServiceImpl implements LoginService{
+public class UserServiceImpl implements UserService {
     @Autowired
     private LoginRepository loginRepository;
 
