@@ -47,15 +47,30 @@ pipeline
                 }
             }
         }
-        stage('5. Create deployment script') {
-            steps {
-                sh """
-                    echo 'docker login -u couping -p mydockertest' > deploy.sh
-                    echo 'docker stop onlineshop' >> deploy.sh
-                    echo 'docker pull couping/myshop:latest' >> deploy.sh
-                    echo 'docker run --rm -d -p 8964:9999 --name onlineshop couping/myshop:latest' >> deploy.sh
-                    echo 'docker image prune -f' >> deploy.sh
-                """
+//         stage('5. Create deployment script') {
+//             steps {
+//                 sh """
+//                     echo 'docker login -u couping -p mydockertest' > deploy.sh
+//                     echo 'docker stop onlineshop' >> deploy.sh
+//                     echo 'docker pull couping/myshop:latest' >> deploy.sh
+//                     echo 'docker run --rm -d -p 8964:9999 --name onlineshop couping/myshop:latest' >> deploy.sh
+//                     echo 'docker image prune -f' >> deploy.sh
+//                 """
+//             }
+//         }
+        stage('5. Create deployment script')
+        {
+            steps
+            {
+                withCredentials([usernamePassword(credentialsId: 'DOCKER_CREDENTIALS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh """
+                        echo 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD' > deploy.sh
+                        echo 'docker stop onlineshop' >> deploy.sh
+                        echo 'docker pull couping/myshop:latest' >> deploy.sh
+                        echo 'docker run --rm -d -p 8964:9999 --name onlineshop couping/myshop:latest' >> deploy.sh
+                        echo 'docker image prune -f' >> deploy.sh
+                    """
+                }
             }
         }
         stage('6. Deploy to Azure')
