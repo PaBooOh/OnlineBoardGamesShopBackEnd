@@ -50,7 +50,7 @@ pipeline
         stage('5. Create deployment script') {
             steps {
                 sh """
-                    echo 'docker login -u couping -p Nc480sdsltyyz!' > deploy.sh
+                    echo 'docker login -u couping -p mydockertest' > deploy.sh
                     echo 'docker stop onlineshop' >> deploy.sh
                     echo 'docker pull couping/myshop:latest' >> deploy.sh
                     echo 'docker run --rm -d -p 8964:9999 --name onlineshop couping/myshop:latest' >> deploy.sh
@@ -89,22 +89,5 @@ pipeline
                 )
             }
         }
-//         stage('5. Production environment deployment')
-//         {
-//             steps
-//             {
-//                 sshagent(credentials: ['AZURE_SSH_CREDS'])
-//                 {
-//                     sh """
-//                         ssh -o StrictHostKeyChecking=no azureuser@20.126.86.227 << EOF
-//                             docker login -u couping -p Nc480sdsltyyz!
-//                             docker pull couping/myshop:latest
-//                             docker run --rm -d -p 8964:9999 --name onlineshop couping/myshop:latest
-//                         EOF
-//                     """
-//                 }
-//             }
-//         }
-
     }
 }
