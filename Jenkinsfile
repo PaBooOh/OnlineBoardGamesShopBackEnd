@@ -66,7 +66,7 @@ pipeline
                     continueOnError: false, failOnError: true,
                     publishers: [
                         sshPublisherDesc(
-                            configName: 'AzureVMSSH',  // 在 Jenkins 中配置的 SSH 配置的名字
+                            configName: 'AzureVMSSH',  // Azure name configured in Jenkins
                             verbose: true,
                             transfers: [
                                 sshTransfer(
