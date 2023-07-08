@@ -72,7 +72,7 @@ pipeline
         {
             steps
             {
-                withCredentials([usernamePassword(credentialsId: 'DOCKER_CREDENTIALS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB_CREDS', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh """
                         echo 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD' > deploy.sh
                         echo 'docker stop onlineshop' >> deploy.sh
