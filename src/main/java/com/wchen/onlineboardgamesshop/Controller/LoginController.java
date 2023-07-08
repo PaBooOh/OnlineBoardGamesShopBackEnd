@@ -17,7 +17,7 @@ public class LoginController {
     private LoginService loginService;
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    @PostMapping("/findUserByName")
+    @PostMapping("/findUserByUserName")
     public ResponseEntity<?> findUserByUserName(@RequestBody User frontEndUser)
     {
         User user = loginService.findUserByUserName(frontEndUser.getUserName());
