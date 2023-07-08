@@ -47,7 +47,6 @@ pipeline
                 }
             }
         }
-//         echo 'docker stop onlineshopbackend' >> deploy_.sh
         stage('5. Create deployment script')
         {
             steps
@@ -56,8 +55,9 @@ pipeline
                 {
                     sh """
                         echo 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD' > deploy_.sh
+                        echo 'docker stop onlineshopbackend' >> deploy_.sh
                         echo 'docker pull $DOCKER_USER/myshopback:latest' >> deploy_.sh
-                        echo 'docker run --rm -d -p 8965:9999 --name onlineshopbackend $DOCKER_USER/myshopback:latest' >> deploy_.sh
+                        echo 'docker run -d -p 8965:9999 --name onlineshopbackend $DOCKER_USER/myshopback:latest' >> deploy_.sh
                         echo 'docker image prune -f' >> deploy_.sh
                     """
                 }
