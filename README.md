@@ -1,12 +1,15 @@
 # OnlineBoardGamesShopBackEnd
 See [OnlineBoardGamesShopFronEnd](https://github.com/PaBooOh/OnlineBoardGamesShopFrontEnd) for the details about the front-end system for this project.
-This System is deployed in Azure. You can visit it with the [public IP address](http://20.126.86.227:8964/).
+This System is deployed in Azure.
+
+[//]: # (You can visit it with the [public IP address]&#40;http://20.126.86.227:8964/&#41;.)
 ## Technologies
 * Java
 * Spring Boot
 * Jenkins
 * Docker
 * Azure (Azure Virtual Machine, Azure Mysql Server)
+* JWT (Token)
   
 ### Jenkins
 ![404 Not Found](/github_images/Jenkins_CICD.png)
