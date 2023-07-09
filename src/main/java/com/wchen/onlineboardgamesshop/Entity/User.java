@@ -20,7 +20,7 @@ public class User {
     private String email;
 
     @Column(nullable = false, name = "role")
-    private int role;
+    private String role;
 
     public long getUuid() {
         return uuid;
@@ -50,11 +50,11 @@ public class User {
         this.email = email;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

@@ -9,13 +9,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LoginRepository extends JpaRepository<User, Integer>{
 
-    @Query(nativeQuery = true, value = "select * from online_shop.user where user.username=:username")
-    public User findUserByUserName(@Param("username") String name);
+    @Query(nativeQuery = true, value = "select * from online_shop.user where user.username = :username")
+    User findUserByUserName(@Param("username") String username);
 
-    @Query(nativeQuery = true, value = "select * from online_shop.user where user.uuid=:uuid")
-    public User findUserByUUid(@Param("uuid") long uuid);
+    @Query(nativeQuery = true, value = "select * from online_shop.user where user.uuid = :uuid")
+    User findUserByUUid(@Param("uuid") long uuid);
 
-    @Query(nativeQuery = true, value = "select * from online_shop.user where user.email=:email")
-    public User findUserByEmail(@Param("email") String email);
+    @Query(nativeQuery = true, value = "select * from online_shop.user where user.email = :email")
+    User findUserByEmail(@Param("email") String email);
+
+    @Query(nativeQuery = true, value = "select * from online_shop.user where user.username = :username and user.password = :password")
+    User findUserByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+
 
 }
